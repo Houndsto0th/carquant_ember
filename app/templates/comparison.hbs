@@ -1,0 +1,38 @@
+
+<br/>
+
+<paper-dropdown-menu label= "Select a make">
+  <paper-dropdown class="dropdown">
+    <core-menu class="menu">
+      {{#each make in model.makes}}
+      <paper-item {{action 'didChooseMake' make}}>{{make.name}}</paper-item>
+      {{/each}}
+    </core-menu>
+  </paper-dropdown>
+</paper-dropdown-menu>
+
+{{#if make}}
+<paper-dropdown-menu label= "Select a model">
+  <paper-dropdown class="dropdown">
+    <core-menu class="menu">
+      {{#each carModel in make.models}}
+      <paper-item {{action 'didChooseModel' carModel}}>{{carModel.name}}</paper-item>
+      {{/each}}
+    </core-menu>
+  </paper-dropdown>
+</paper-dropdown-menu>
+{{/if}}
+
+{{#if carModel}}
+<paper-dropdown-menu label= "Select a year">
+  <paper-dropdown class="dropdown">
+    <core-menu class="menu">
+      {{#each year in carModel.years}}
+      <paper-item>{{year.year}}</paper-item>
+      {{/each}}
+    </core-menu>
+  </paper-dropdown>
+</paper-dropdown-menu>
+{{/if}}
+
+{{outlet}}

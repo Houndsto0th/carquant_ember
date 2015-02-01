@@ -13,6 +13,8 @@ module.exports = function(environment) {
       }
     },
 
+    // drop some content security policy directives
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
