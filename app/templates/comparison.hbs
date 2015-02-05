@@ -1,7 +1,7 @@
 <br/>
 
 <paper-shadow class="half_page" z="1">
-<paper-dropdown-menu label= "Select a make">
+<paper-dropdown-menu label= "Select a make" class="comparison-container">
   <paper-dropdown class="dropdown">
     <core-menu class="menu">
       {{#each make in model.makes}}
@@ -12,7 +12,7 @@
 </paper-dropdown-menu>
 
 {{#if make}}
-<paper-dropdown-menu label= "Select a model">
+<paper-dropdown-menu label= "Select a model" class="comparison-container">
   <paper-dropdown class="dropdown">
     <core-menu class="menu" {{bind-attr selected=carModel.name}}>
       {{#each carModel in make.models}}
@@ -24,7 +24,7 @@
 {{/if}}
 
 {{#if carModel}}
-<paper-dropdown-menu label= "Select a year">
+<paper-dropdown-menu label= "Select a year" class="comparison-container">
   <paper-dropdown class="dropdown">
     <core-menu class="menu" {{bind-attr selected=year.year}}>
       {{#each year in carModel.years}}
@@ -36,64 +36,32 @@
 {{/if}}
 
 {{#if year}}
-<paper-dropdown-menu label= "Select a style">
+<paper-input-decorator class="comparison-container">
+  {{input type=text placeholder="Enter a Zip Code" value=zipCode}}
+</paper-input-decorator>
+<paper-dropdown-menu label= "Select a style" class="comparison-container">
   <paper-dropdown class="dropdown">
     <core-menu class="menu" {{bind-attr selected=styles.name}}>
-      {{#each styles in styles}}
-      <paper-item {{bind-attr style=styles.name}}>{{styles.name}}</paper-item>
+      {{#each style in styles}}
+      <paper-item {{bind-attr style= styles.name}}{{action 'didChooseStyle' style year zipCode}}>{{style.name}}</paper-item>
       {{/each}}
     </core-menu>
   </paper-dropdown>
 </paper-dropdown-menu>
+{{/if}}
+
+{{#if style}}
+  <p class="scroll-this">
+  {{#each maintenance in maintenances}}
+    {{log maintenance}}
+    <p>{{maintenance.action}} {{maintenance.item}} {{maintenance.laborUnits}}</p>
+  {{/each}}
+</p>
 {{/if}}
 </paper-shadow>
 
-<paper-shadow class="half_page" z="1">
-<paper-dropdown-menu label= "Select a make">
-  <paper-dropdown class="dropdown">
-    <core-menu class="menu">
-      {{#each make in model.makes}}
-      <paper-item {{action 'didChooseMake' make}}>{{make.name}}</paper-item>
-      {{/each}}
-    </core-menu>
-  </paper-dropdown>
-</paper-dropdown-menu>
+  <!-- seperation -->
 
-{{#if make}}
-<paper-dropdown-menu label= "Select a model">
-  <paper-dropdown class="dropdown">
-    <core-menu class="menu" {{bind-attr selected=carModel.name}}>
-      {{#each carModel in make.models}}
-      <paper-item {{bind-attr name=carModel.name}} {{action 'didChooseModel' carModel}}>{{carModel.name}}</paper-item>
-      {{/each}}
-    </core-menu>
-  </paper-dropdown>
-</paper-dropdown-menu>
-{{/if}}
-
-{{#if carModel}}
-<paper-dropdown-menu label= "Select a year">
-  <paper-dropdown class="dropdown">
-    <core-menu class="menu" {{bind-attr selected=year.year}}>
-      {{#each year in carModel.years}}
-      <paper-item {{bind-attr year= year.year}}{{action 'didChooseYear' make carModel year}}>{{year.year}}</paper-item>
-      {{/each}}
-    </core-menu>
-  </paper-dropdown>
-</paper-dropdown-menu>
-{{/if}}
-
-{{#if year}}
-<paper-dropdown-menu label= "Select a style">
-  <paper-dropdown class="dropdown">
-    <core-menu class="menu" {{bind-attr selected=styles.name}}>
-      {{#each styles in styles}}
-      <paper-item {{bind-attr style=styles.name}}>{{styles.name}}</paper-item>
-      {{/each}}
-    </core-menu>
-  </paper-dropdown>
-</paper-dropdown-menu>
-{{/if}}
 </paper-shadow>
 
 {{outlet}}

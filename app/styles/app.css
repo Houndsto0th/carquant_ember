@@ -17,14 +17,39 @@ html, body {
 
 .half_page{
   width: 49%;
-  height: 90%;
+  height: 80%;
   padding: 20px;
   margin: 0 auto;
   display: inline-block;
+
 }
 
 .comparison-container {
+  margin: 0 auto;
+  width: 50%;
+  text-align: center;
+  left: 25%;
+  display: block;
 
+}
+
+input{
+  width: 25%;
+  text-align: center;
+}
+
+.quarter-comparison {
+  float:left;
+  width: 25%;
+  text-align: center;
+  left: 25%;
+}
+
+.scroll-this {
+  width: 75%;
+  margin: 0 auto;
+  height: 50%;
+  overflow: scroll;
 }
 
 /*!
